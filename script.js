@@ -1,26 +1,31 @@
 window.onload = function() {
-  const introHello = document.getElementById('intro-hello');
+  const movingHello = document.getElementById('moving-hello');
   const headerHello = document.getElementById('header-hello');
   const headerText = document.getElementById('header-text');
   const introScreen = document.getElementById('intro-screen');
+  const mainHeader = document.getElementById('main-header');
 
+  // Wait a bit before animating
   setTimeout(() => {
-    const introRect = introHello.getBoundingClientRect();
+    // Get the position of headerHello relative to the viewport
+    const helloRect = movingHello.getBoundingClientRect();
     const headerRect = headerHello.getBoundingClientRect();
 
-    const dx = headerRect.left - introRect.left;
-    const dy = headerRect.top - introRect.top;
+    // Calculate the difference
+    const dx = headerRect.left - helloRect.left;
+    const dy = headerRect.top - helloRect.top;
 
-    introHello.style.setProperty('--dx', dx + 'px');
-    introHello.style.setProperty('--dy', dy + 'px');
+    // Move the movingHello to the headerHello position
+    movingHello.style.transform = `translate(-50%, -50%) translate(${dx}px, ${dy}px)`;
 
-    introHello.classList.add('linear-move');
-
-    // After animation completes
+    // After the animation
     setTimeout(() => {
+      // Hide the intro screen
       introScreen.classList.add('hide');
+      // Set the headerHello text to "Hello!" (seamless, same style/size)
       headerHello.textContent = 'Hello!';
-      headerText.style.opacity = '1'; // Fade in the rest of the text
-    }, 800); // Match animation duration
+      // Fade in the rest of the header text
+      headerText.style.opacity = '1';
+    }, 1000); // Match the transition duration
   }, 1500);
 };
