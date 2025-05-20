@@ -1,16 +1,29 @@
 window.onload = function() {
-  // Wait 2 seconds, then animate "Hello!" up
-  setTimeout(() => {
-    document.getElementById('intro-text').classList.add('fly-up');
-  }, 2000);
+  const introHello = document.getElementById('intro-hello');
+  const headerHello = document.getElementById('header-hello');
+  const introScreen = document.getElementById('intro-screen');
 
-  // After animation, hide intro and show header
+  // Wait 1.5 seconds, then animate Hello! into the header
   setTimeout(() => {
-    document.getElementById('intro-screen').classList.add('hidden');
-    const header = document.getElementById('main-header');
-    header.classList.remove('hidden');
+    // Get positions
+    const introRect = introHello.getBoundingClientRect();
+    const headerRect = headerHello.getBoundingClientRect();
+
+    // Calculate the distance to move
+    const dx = headerRect.left - introRect.left;
+    const dy = headerRect.top - introRect.top;
+
+    // Set CSS variables for the animation
+    introHello.style.setProperty('--dx', dx + 'px');
+    introHello.style.setProperty('--dy', dy + 'px');
+
+    // Start the animation
+    introHello.classList.add('bounce-to-header');
+
+    // After animation, hide intro, show header Hello!
     setTimeout(() => {
-      header.classList.add('visible');
-    }, 70); // Small delay for fade-in effect
-  }, 2800);
+      introScreen.classList.add('hide');
+      headerHello.textContent = 'Hello!';
+    }, 850);
+  }, 1500);
 };
