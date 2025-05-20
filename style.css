@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
 body, html {
   margin: 0;
   padding: 0;
   height: 100%;
   background: #fff;
+  font-family: 'Merriweather', serif; /* Classy serif font */
+  color: #111;
 }
 
 #intro-screen {
@@ -16,12 +20,11 @@ body, html {
 }
 
 #intro-hello {
-  color: #111;
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: normal; /* Remove bold */
   position: relative;
   z-index: 1001;
-  transition: transform 0.8s cubic-bezier(0.68,-0.55,0.27,1.55), opacity 0.4s;
+  transition: transform 0.8s ease-in, opacity 0.4s ease-in;
 }
 
 header {
@@ -31,13 +34,16 @@ header {
   margin-top: 60px;
   opacity: 1;
   position: relative;
+  font-weight: normal; /* Remove bold */
 }
 
 #header-hello {
-  color: #111;
-  font-weight: bold;
   display: inline-block;
   min-width: 90px; /* Reserve space for Hello! */
+  font-weight: normal; /* Remove bold */
+  font-size: 2rem;
+  font-family: 'Merriweather', serif;
+  color: #111;
 }
 
 .hide {
@@ -45,21 +51,17 @@ header {
   pointer-events: none;
 }
 
-.bounce-to-header {
-  animation: bounceToHeader 0.8s cubic-bezier(0.68,-0.55,0.27,1.55) forwards;
+.ease-in-move {
+  animation: moveToHeader 0.8s ease-in forwards;
 }
 
-@keyframes bounceToHeader {
+@keyframes moveToHeader {
   0% {
     transform: translate(0, 0) scale(1);
-  }
-  60% {
-    transform: translate(var(--dx), var(--dy)) scale(1.2);
-  }
-  80% {
-    transform: translate(var(--dx), var(--dy)) scale(0.95);
+    opacity: 1;
   }
   100% {
     transform: translate(var(--dx), var(--dy)) scale(1);
+    opacity: 1;
   }
 }
