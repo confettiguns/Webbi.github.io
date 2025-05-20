@@ -1,6 +1,7 @@
 window.onload = function() {
   const introHello = document.getElementById('intro-hello');
   const headerHello = document.getElementById('header-hello');
+  const headerText = document.getElementById('header-text');
   const introScreen = document.getElementById('intro-screen');
 
   setTimeout(() => {
@@ -13,11 +14,13 @@ window.onload = function() {
     introHello.style.setProperty('--dx', dx + 'px');
     introHello.style.setProperty('--dy', dy + 'px');
 
-    introHello.classList.add('ease-in-move');
+    introHello.classList.add('linear-move');
 
+    // After animation completes
     setTimeout(() => {
       introScreen.classList.add('hide');
       headerHello.textContent = 'Hello!';
+      headerText.style.opacity = '1'; // Fade in the rest of the text
     }, 800); // Match animation duration
   }, 1500);
 };
